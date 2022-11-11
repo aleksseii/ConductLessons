@@ -23,6 +23,18 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.24")
 }
 
+tasks.register<JavaExec>("runApp") {
+    group = "run"
+    args = listOf(
+        "jdbc:postgresql://127.0.0.1:5432/",
+        "lessons_db",
+        "postgres",
+        "postgres"
+    )
+    mainClass.set("ru.aleksseii.Main")
+    classpath = sourceSets["main"].runtimeClasspath
+}
+
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
 }
